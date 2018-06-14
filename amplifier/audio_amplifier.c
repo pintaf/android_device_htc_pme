@@ -16,16 +16,21 @@
  */
 
 #define LOG_TAG "audio_amplifier"
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cutils/log.h>
 #include <cutils/str_parms.h>
+#include <sys/types.h>
 
 #include <hardware/audio_amplifier.h>
-#include <msm8974/platform.h>
+#include <hardware/hardware.h>
 #include <system/audio.h>
+
+#include <msm8974/platform.h>
+#include "audio_hw.h"
 
 #include "tfa.h"
 

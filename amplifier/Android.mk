@@ -8,15 +8,21 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_C_INCLUDES := \
        external/tinyalsa/include \
        hardware/libhardware/include \
+       external/tinycompress/include \
+       $(call include-path-for, audio-route) \
+       $(call include-path-for, audio-effects) \
+       $(call project-path-for,qcom-audio)/hal/audio_extn \
        $(call project-path-for,qcom-audio)/hal
 
 LOCAL_SRC_FILES := \
 	audio_amplifier.c tfa.c
 
-LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/techpack/audio/include
+LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/vendor/qcom/opensource/audio-kernel/include
 
-LOCAL_MODULE := audio_amplifier.msm8996
+LOCAL_MODULE := audio_amplifier.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
 LOCAL_PROPRIETARY_MODULE := true

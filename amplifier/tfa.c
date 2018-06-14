@@ -15,8 +15,9 @@
  */
 
 #define LOG_TAG "audio_amplifier::tfa"
-//#define LOG_NDEBUG 0
+#define LOG_NDEBUG 0
 
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

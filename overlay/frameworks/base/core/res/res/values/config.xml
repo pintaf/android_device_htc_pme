@@ -60,24 +60,6 @@
         <item>255</item>
     </integer-array>
 
-    <!-- Some brightness configs from stock O -->
-    <integer name="config_autoBrightnessAmbientLightHorizon">10000</integer>
-    <integer name="config_autoBrightnessBrighteningLightDebounce">4000</integer>
-    <integer name="config_autoBrightnessDarkeningLightDebounce">8000</integer>
-    <integer name="config_autoBrightnessInitialLightSensorRate">-1</integer>
-    <integer name="config_autoBrightnessLightSensorRate">250</integer>
-    <integer name="config_brightness_ramp_rate_fast">200</integer>
-    <integer name="config_brightness_ramp_rate_slow">40</integer>
-    <integer name="config_screenBrightnessDark">1</integer>
-    <integer name="config_screenBrightnessDim">10</integer>
-    <integer name="config_screenBrightnessDoze">17</integer>
-    <integer name="config_screenBrightnessForVrSettingDefault">86</integer>
-    <integer name="config_screenBrightnessForVrSettingMaximum">255</integer>
-    <integer name="config_screenBrightnessForVrSettingMinimum">79</integer>
-    <integer name="config_screenBrightnessSettingDefault">102</integer>
-    <integer name="config_screenBrightnessSettingMaximum">255</integer>
-    <integer name="config_screenBrightnessSettingMinimum">10</integer>
-
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
@@ -226,9 +208,6 @@
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool> -->
 
-    <!-- Boolean indicating whether Hotspot 2.0/Passpoint and ANQP queries is enabled
-    <bool translatable="false" name="config_wifi_hotspot2_enabled">true</bool>  -->
-
     <!-- Boolean indicating whether 802.11r Fast BSS Transition is enabled on this platform -->
     <bool translatable="false" name="config_wifi_fast_bss_transition_enabled">true</bool>
 
@@ -320,12 +299,15 @@
          ComponentName of a dream to show whenever the system would otherwise have gone to sleep. -->
     <string name="config_dozeComponent">com.android.systemui/com.android.systemui.doze.DozeService</string>
 
+    <!-- Screen brightness when dozing. -->
+    <integer name="config_screenBrightnessDoze">17</integer>
+
     <!-- If true, the doze component is not started until after the screen has been turned off
          and the screen off animation has been performed. -->
     <bool name="config_dozeAfterScreenOff">true</bool>
-
-    <!-- Doze: should the TYPE_PICK_UP_GESTURE sensor be used as a pulse signal. -->
-    <bool name="config_dozePulsePickup">false</bool>
+	
+    <!-- Specifies whether to decouple the autosuspend state of the device from the display on/off state. -->
+    <bool name="config_powerDecoupleAutoSuspendModeFromDisplay">false</bool>
 
     <!-- Specifies whether to decouple the interactive state of the device from the display on/off state. -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
@@ -336,10 +318,6 @@
     <!-- Boolean indicating if current platform supports BLE peripheral mode -->
     <bool name="config_bluetooth_le_peripheral_mode_supported">true</bool>
 
-    <!-- Enable overlay for all location components. -->
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
-    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
-
     <!-- Use ERI text for network name on CDMA LTE -->
     <bool name="config_LTE_eri_for_network_name">false</bool>
 
@@ -349,10 +327,13 @@
     <!-- Make things go fast -->
     <bool name="config_ui_enableFadingMarquee">false</bool>
 
-    <!-- VoLTE settings as per stock -->
+    <!-- VoLTE settings -->
     <bool name="config_device_volte_available">true</bool>
+    <bool name="config_device_vt_available">true</bool>
+    <bool name="config_device_wfc_ims_available">true</bool>
     <bool name="config_carrier_volte_available">true</bool>
     <bool name="config_carrier_volte_tty_supported">true</bool>
+    <bool name="config_carrier_wfc_ims_available">true</bool>
 
     <!-- ImsService package name to bind to by default, if config_dynamic_bind_ims is true -->
     <string name="config_ims_package">org.codeaurora.ims</string>
@@ -360,7 +341,28 @@
     <!-- Flag specifying whether or not IMS will use the ImsResolver dynamically -->
     <bool name="config_dynamic_bind_ims">true</bool>
 
+    <!-- Default list of files pinned by the Pinner Service -->
+    <string-array translatable="false" name="config_defaultPinnerServiceFiles">
+        <item>"/system/framework/arm64/boot-framework.oat"</item>
+        <item>"/system/framework/arm64/boot-framework.vdex"</item>
+        <item>"/system/framework/oat/arm64/services.odex"</item>
+        <item>"/system/framework/oat/arm64/services.vdex"</item>
+        <item>"/system/framework/arm64/boot.oat"</item>
+        <item>"/system/framework/arm64/boot.vdex"</item>
+        <item>"/system/framework/arm64/boot-core-libart.oat"</item>
+        <item>"/system/framework/arm64/boot-core-libart.vdex"</item>
+    </string-array>
+
     <!-- Should the pinner service pin the Camera application? -->
     <bool name="config_pinnerCameraApp">true</bool>
 
+    <!-- Enable Night display, which requires HWC 2.0. -->
+    <bool name="config_nightDisplayAvailable">true</bool>
+
+    <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
+         in hardware. -->
+    <bool name="config_setColorTransformAccelerated">true</bool>
+
+    <!-- Whether device supports double tap to wake -->
+    <bool name="config_supportDoubleTapWake">true</bool>
 </resources>
