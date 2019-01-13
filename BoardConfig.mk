@@ -80,7 +80,6 @@ AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
 AUDIO_FEATURE_ENABLED_HFP := true
-AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
 AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_NT_PAUSE_TIMEOUT := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
@@ -89,8 +88,9 @@ AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
 AUDIO_FEATURE_ENABLED_SND_MONITOR := true
 #AUDIO_FEATURE_ENABLED_VORBIS_OFFLOAD := true
 #AUDIO_FEATURE_ENABLED_WMA_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PERF_HINTS := true
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
-BOARD_SUPPORTS_SOUND_TRIGGER := true
+BOARD_SUPPORTS_SOUND_TRIGGER := false
 BOARD_USES_ALSA_AUDIO := true
 USE_CUSTOM_AUDIO_POLICY := 1
 USE_XML_AUDIO_POLICY_CONF := 1
@@ -133,6 +133,9 @@ VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 USE_OPENGL_RENDERER := true
 
+# DRM
+TARGET_ENABLE_MEDIADRM_64 := true
+
 # Enable real time lockscreen charging current values
 BOARD_GLOBAL_CFLAGS += -DBATTERY_REAL_INFO
 
@@ -141,6 +144,7 @@ TARGET_PER_MGR_ENABLED := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_LEGACY_HW_DISK_ENCRYPTION := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
@@ -199,17 +203,21 @@ TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RIL_VARIANT := caf
 
 # SELinux
-#-include device/lineage/sepolicy/qcom/sepolicy.mk
-# BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # SHIMS
 TARGET_LD_SHIM_LIBS := \
     /vendor/lib64/libril.so|/vendor/lib64/libshim_ril.so \
-    /vendor/lib/hw/camera.msm8996.so|/vendor/lib/libshim_camera.so
+    /vendor/lib/hw/camera.msm8996.so|/vendor/lib/libshim_camera.so \
+    /system/lib64/lib-imsvideocodec.so|libshim_ims.so
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     device/htc/pme/libshims
+
+# Thermal
+USE_DEVICE_SPECIFIC_THERMAL := true
 
 # Treble
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true

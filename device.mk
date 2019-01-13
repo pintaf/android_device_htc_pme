@@ -209,9 +209,9 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.0-service.widevine \
-    android.hardware.drm@1.0-impl
+    android.hardware.drm@1.1-service.clearkey
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -266,6 +266,10 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.power.rc \
     init.qcom.usb.rc \
+    init.qcom.early_boot.sh \
+    init.qcom.post_boot.sh \
+    init.qcom.sensors.sh \
+    init.qti.ims.sh \
     init.qcom.usb.sh \
     init.qcom.sh \
     init.qcom.firmware_links.sh \
@@ -354,7 +358,7 @@ PRODUCT_PACKAGES += \
     Tag
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nci.conf \
+    $(LOCAL_PATH)/configs/libnfc-nci.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/libnfc-nci.conf \
     $(LOCAL_PATH)/configs/libnfc-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libnfc-nxp.conf
 
 # OMX
@@ -436,7 +440,8 @@ PRODUCT_PACKAGES += \
     com.android.ims.rcsmanager.xml \
     com.android.ims.rcsmanager \
     ims-ext-common \
-    telephony-ext
+    telephony-ext \
+    libshim_ims
 
 PRODUCT_BOOT_JARS += \
     telephony-ext
@@ -446,6 +451,11 @@ PRODUCT_PACKAGES += \
     textclassifier.bundle1
 
 # Thermal
+PRODUCT_PACKAGES += \
+    thermal.msm8996 \
+    android.hardware.thermal@1.0-impl \
+    android.hardware.thermal@1.0-service
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
 
@@ -465,6 +475,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
+
+# Voice assistant
+PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+    ro.opa.eligible_device=true
 
 # VNDK
 PRODUCT_PACKAGES += \

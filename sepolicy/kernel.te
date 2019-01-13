@@ -1,4 +1,5 @@
-# HTC's battery code directly writes to misc to store (debugging?) state
-allow kernel misc_block_device:blk_file rw_file_perms;
-# Reads rtg_3
+# Allow access to sysfs
+allow kernel sysfs:file { open read write getattr };
+allow kernel self:capability dac_override;
 allow kernel vfat:dir search;
+allow kernel vfat:file open;

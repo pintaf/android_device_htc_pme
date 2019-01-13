@@ -27,6 +27,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.audio.fluence.voicerec=false \
     persist.vendor.audio.fluence.speaker=true \
     persist.vendor.bt.enable.splita2dp=false \
+    persist.vendor.audio.hw.binder.size_kbyte=1024 \
+    ro.af.client_heap_size_kbyte=7168 \
     ro.config.media_vol_steps=25 \
     ro.config.vc_call_vol_steps=7 \
     ro.vendor.audio.sdk.ssr=false \
@@ -38,6 +40,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio_hal.period_size=192 \
     vendor.audio.hw.aac.encoder=true \
     vendor.audio.offload.buffer.size.kb=1024 \
+    vendor.audio.offload.gapless.enabled=false \
     vendor.audio.offload.multiaac.enable=false \
     vendor.audio.offload.multiple.enabled=false \
     vendor.audio.offload.pcm.16bit.enable=false \
@@ -68,7 +71,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.cne.feature=1
+    persist.vendor.cne.feature=1
 
 # Enable STM events
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -77,6 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Data modules
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.use_data_netmgrd=true \
+    ro.vendor.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
     persist.data.mode=concurrent
 
@@ -105,12 +109,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
-    persist.sys.wfd.virtual=0 \
     ro.opengles.version=196610 \
     sdm.debug.disable_rotator_split=1 \
     debug.sf.recomputecrop=0 \
     vendor.display.disable_rotator_downscale=1 \
-    ro.sf.lcd_density=640
+    ro.sf.lcd_density=640 \
     vendor.display.perf_hint_window=50 \
     vendor.gralloc.enable_fb_ubwc=1 \
     vendor.display.disable_skip_validate=1
@@ -208,13 +211,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.delta_time.enable=true
 
+# WFD
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.wfd.enable=1 \
+    persist.sys.wfd.virtual=0
+
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
-    wifi.interface=wlan0
+    wifi.interface=wlan0 \
+    wifi.direct.interface=p2p-dev-wlan0
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opa.eligible_device=true \
     keyguard.no_require_sim=true \
     ro.min.fling_velocity=160 \
     ro.max.fling_velocity=20000
