@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2017-2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -106,8 +106,10 @@ BOARD_CUSTOM_BT_CONFIG := $(DEVICE_PATH)/bluetooth/libbt_vndcfg.txt
 
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
-USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
+TARGET_USES_QTI_CAMERA2CLIENT := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Dex
 ifeq ($(HOST_OS),linux)
@@ -145,12 +147,21 @@ TARGET_PER_MGR_ENABLED := true
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 TARGET_LEGACY_HW_DISK_ENCRYPTION := true
+TARGET_KEYMASTER_SKIP_WAITING_FOR_QSEE := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 TARGET_EXFAT_DRIVER := exfat
 
+# GPS
+TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
+BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
+
 # HIDL
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := $(DEVICE_PATH)/vendor_framework_compatibility_matrix.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 DEVICE_MATRIX_FILE   := $(DEVICE_PATH)/compatibility_matrix.xml
 
@@ -168,9 +179,6 @@ TARGET_PROVIDES_KEYMASTER := true
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
 
-# Lineage Hardware
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
-
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
@@ -183,10 +191,6 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3640655872
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26323451904
 TARGET_USES_MKE2FS := true
-
-# Power
-TARGET_HAS_NO_WLAN_STATS := true
-TARGET_USES_INTERACTION_BOOST := false
 
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
@@ -204,7 +208,7 @@ TARGET_RIL_VARIANT := caf
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+# BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # SHIMS
 TARGET_LD_SHIM_LIBS := \

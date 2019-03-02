@@ -69,9 +69,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.ts.rtmakeup=false \
     vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,org.lineageos.snap
 
-# CNE
+# CNE & DPM
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.cne.feature=1
+    persist.vendor.cne.feature=1 \
+    persist.vendor.dpm.feature=0 \
 
 # Enable STM events
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -146,9 +147,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vidc.enc.dcvs.extra-buff-count=2 \
     vidc.debug.perf.mode=2
 
+# Memory optimizations
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.qti.sys.fw.bservice_enable=true
+
 # NFC
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.nfc.port=I2C
+    ro.nfc.port=I2C \
+    persist.nfc.smartcard.config=SIM1,eSE1
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -209,7 +215,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.delta_time.enable=true
+    persist.timed.enable=true
 
 # WFD
 PRODUCT_PROPERTY_OVERRIDES += \
