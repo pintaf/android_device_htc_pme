@@ -236,6 +236,9 @@ TARGET_LD_SHIM_LIBS := \
 PRODUCT_SOONG_NAMESPACES += \
     device/htc/pme/libshims
 
+# Telephony
+TARGET_USES_ALTERNATIVE_MANUAL_NETWORK_SELECT := true
+
 # Thermal
 USE_DEVICE_SPECIFIC_THERMAL := true
 
