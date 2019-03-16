@@ -121,6 +121,8 @@ It allows additional grants on top of privapp-permissions-platform.xml
 
     <privapp-permissions package="com.android.launcher3">
         <permission name="android.permission.FORCE_STOP_PACKAGES"/>
+        <permission name="android.permission.INTERACT_ACROSS_USERS"/>
+        <permission name="android.permission.MANAGE_USERS"/>
     </privapp-permissions>
 
     <privapp-permissions package="com.android.settings">
@@ -152,5 +154,9 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.MODIFY_PHONE_STATE"/>
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
         <permission name="android.permission.REAL_GET_TASKS"/>
+    </privapp-permissions>
+
+    <privapp-permissions package="com.android.phone">
+        <permission name="android.permission.OVERRIDE_WIFI_CONFIG"/>
     </privapp-permissions>
 </permissions>
