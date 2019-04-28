@@ -488,20 +488,9 @@ service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
-    writepid /dev/cpuset/system-background/tasks
 
-on property:init.svc.media=restarting
-    restart qcamerasvr
-
-on property:init.svc.servicemanager=restarting
-    restart qcamerasvr
-
-service vendor.foreground_sh /vendor/bin/init.foreground.sh
-    class main
-    user root
-    group root system readproc
-    disabled
-    oneshot
+on property:vold.decrypt=trigger_restart_framework
+    restart vendor.camera-provider-2-4
 
 service qseecomd /vendor/bin/qseecomd
     class core
@@ -516,11 +505,6 @@ service thermal-engine /vendor/bin/thermal-engine -c ${sys.qcom.thermalcfg:-/ven
     socket thermal-send-client stream 0666 system system
     socket thermal-recv-client stream 0660 system system
     socket thermal-recv-passive-client stream 0666 system system
-    writepid /dev/cpuset/system-background/tasks
-
-service thermal-monitor /vendor/bin/thermal-monitor
-    class main
-    user root
     writepid /dev/cpuset/system-background/tasks
 
 # WPA supplicant
