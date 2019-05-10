@@ -157,4 +157,8 @@ It allows additional grants on top of privapp-permissions-platform.xml
         <permission name="android.permission.WRITE_SECURE_SETTINGS"/>
         <permission name="android.permission.REAL_GET_TASKS"/>
     </privapp-permissions>
+
+    <privapp-permissions package="org.omnirom.omnistyle">
+        <permission name="android.permission.CHANGE_OVERLAY_PACKAGES"/>
+    </privapp-permissions>
 </permissions>
