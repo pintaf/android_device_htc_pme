@@ -211,10 +211,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.ssc=true
 
-# System prop for enabling/disabling Android XLAT
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.net.doxlat=false
-
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
@@ -226,10 +222,33 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
-    wifi.direct.interface=p2p-dev-wlan0
+    wifi.direct.interface=p2p-dev-wlan0 \
+    wifi.supplicant_scan_interval=360
 
 # Misc
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.min.fling_velocity=160 \
-    ro.max.fling_velocity=20000
+    ro.max.fling_velocity=20000 \
+    ro.config.max_starting_bg=4 \
+    persist.added_boot_bgservices=4 \
+    ro.am.reschedule_service=true \
+    vidc.debug.level=0 \
+    persist.sys.use_16bpp_alpha=1 \
+    persist.sys.scrollingcache=1 \
+    persist.sys.purgeable_assets=1 \
+    ro.sys.fw.dex2oat_thread_count=4 \
+    dalvik.vm.dex2oat-threads=4 \
+    dalvik.vm.image-dex2oat-threads=4 \
+    debug.generate-debug-info=false \
+    sys.use_fifo_ui=1 \
+    net.tcp.2g_init_rwnd=10 \
+    persist.net.doxlat=true \
+    ro.data.large_tcp_window_size=true \
+    persist.metadata_dynfps.disable=true \
+    persist.debug.sf.statistics=0 \
+    media.stagefright.enable-fma2dp=true \
+    media.stagefright.audio.sink=280 \
+    media.msm8996hw=1 \
+    mm.enable.sec.smoothstreaming=true \
+    av.debug.disable.pers.cache=true
