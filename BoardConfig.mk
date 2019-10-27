@@ -54,7 +54,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff loop.max_part=7 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 cma=32M@0-0xffffffff loop.max_part=7 androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
@@ -62,9 +62,7 @@ BOARD_RAMDISK_OFFSET     := 0x02200000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/htc/msm8996
 TARGET_KERNEL_CONFIG := pme_defconfig
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-hidl"
+export CROSS_COMPILE_ARM32 = prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9/bin/arm-linux-androideabi-
 
 # Audio
 #AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
@@ -96,7 +94,7 @@ USE_CUSTOM_AUDIO_POLICY := 1
 USE_XML_AUDIO_POLICY_CONF := 1
 TARGET_USES_QCOM_MM_AUDIO := true
 
-BOARD_ROOT_EXTRA_SYMLINKS := /vendor/lib/dsp:/dsp
+BOARD_ROOT_EXTRA_SYMLINKS := /vendor/dsp:/dsp
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -110,6 +108,13 @@ TARGET_CAMERASERVICE_CLOSES_NATIVE_HANDLES := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
 TARGET_USES_QTI_CAMERA2CLIENT := true
 USE_DEVICE_SPECIFIC_CAMERA := true
+
+# Camera API Override
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+    /vendor/bin/mm-qcamera-daemon=26 \
+    /system/vendor/bin/mm-qcamera-daemon=26 \
+    /vendor/bin/hw/android.hardware.camera.provider@2.4-service=26 \
+    /system/vendor/bin/hw/android.hardware.camera.provider@2.4-service=26
 
 # Dex
 ifeq ($(HOST_OS),linux)
@@ -195,6 +200,10 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3640655872
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26323451904
 TARGET_USES_MKE2FS := true
 
+# Power
+TARGET_HAS_NO_WLAN_STATS := true
+TARGET_USES_INTERACTION_BOOST := true
+
 # Qualcomm
 BOARD_USES_QCOM_HARDWARE := true
 
@@ -208,15 +217,18 @@ TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
 # RIL
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
 TARGET_RIL_VARIANT := caf
+TARGET_USES_OLD_MNC_FORMAT := true
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-# BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # SHIMS
 TARGET_LD_SHIM_LIBS := \
     /vendor/lib64/libril.so|/vendor/lib64/libshim_ril.so \
     /vendor/lib/hw/camera.msm8996.so|/vendor/lib/libshim_camera.so \
+    /system/vendor/lib/libmmcamera_stillmore_lib.so|/vendor/lib/libshim_stillmore.so \
+    /system/vendor/lib/libmmcamera_ppeiscore.so|/vendor/lib/libshim_ppe.so \
     /system/lib64/lib-imsvideocodec.so|libshim_ims.so
 
 # Soong namespaces

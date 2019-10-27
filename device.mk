@@ -100,15 +100,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries_system.txt:system/etc/public.libraries.txt \
     $(LOCAL_PATH)/configs/public.libraries_vendor.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
 
-# ANT+
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
-
-PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.dsi.ant.antradio_library.xml
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -116,6 +107,7 @@ PRODUCT_PACKAGES += \
     audio.primary.msm8996 \
     audio.r_submix.default \
     audio.usb.default \
+    libaacwrapper \
     libaudio-resampler \
     libaudioroute \
     libqcompostprocbundle \
@@ -166,6 +158,8 @@ PRODUCT_PACKAGES += \
     libmm-qcamera \
     Snap \
     libshim_camera \
+    libshim_stillmore \
+    libshim_ppe \
     libion
 
 PRODUCT_PACKAGES += \
@@ -219,6 +213,10 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.1-service.clearkey
 
+# Enable Codec 2.0
+PRODUCT_PACKAGES += \
+    libstagefright_ccodec
+
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
@@ -256,8 +254,7 @@ PRODUCT_COPY_FILES += \
 # Health
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service \
-    chargeonlymode
+    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -280,7 +277,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     init.qcom.sh \
     init.qcom.firmware_links.sh \
-    init.foreground.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     ueventd.qcom.rc
@@ -389,18 +385,14 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power@1.2-service.pme
+    android.hardware.power@1.1-service-qti
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(LOCAL_PATH)/configs/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 # Prebuilts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/org.apache.http.legacy.jar:system/framework/org.apache.http.legacy.jar
-
-# Properties
-PRODUCT_PACKAGES += \
-    operator-properties
 
 # QMI
 PRODUCT_PACKAGES += \
@@ -510,6 +502,13 @@ PRODUCT_PACKAGES += \
     wlutil \
     wpa_supplicant \
     wpa_supplicant.conf
+
+# WiFi Display
+PRODUCT_PACKAGES += \
+    libnl
+
+PRODUCT_BOOT_JARS += \
+    WfdCommon
 
 # Wifi tether
 PRODUCT_PROPERTY_OVERRIDES += \

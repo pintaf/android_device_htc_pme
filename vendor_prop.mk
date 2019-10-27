@@ -107,6 +107,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
     debug.sf.latch_unsignaled=1 \
+    debug.gralloc.gfx_ubwc_disable=0 \
+    debug.sf.enable_hwc_vds=1 \
     dev.pm.dyn_samplingrate=1 \
     persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
@@ -144,6 +146,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     mm.enable.qcom_parser=1048575 \
     persist.mm.enable.prefetch=true \
     vendor.vidc.enc.disable.pq=true \
+    vendor.video.disable.ubwc=1 \
     vidc.enc.dcvs.extra-buff-count=2 \
     vidc.debug.perf.mode=2
 
@@ -173,8 +176,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     rild.vendor.libpath=/system/vendor/lib64/libril-qc-qmi-1.so \
     ro.baseband.arch=msm \
     ro.telephony.call_ring.multiple=false \
-    ro.ril.telephony.mqanelements=5 \
-    persist.radio.apm_sim_not_pwdn=0 \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.apm_mdm_not_pwdn=1 \
     persist.vendor.radio.cs_srv_type=1 \
     persist.vendor.radio.snapshot_timer=0 \
@@ -183,8 +186,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.fill_eons=1 \
     persist.vendor.ims.dropset_feature=0 \
     persist.data.profile_update=true \
-    persist.radio.NETWORK_SWITCH=1 \
-    persist.vendor.radio.add_power_save=1
+    persist.radio.NETWORK_SWITCH=1
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -219,8 +221,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # WFD
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.wfd.enable=1 \
-    persist.sys.wfd.virtual=0
+    persist.debug.wfd.enable=1
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -232,3 +233,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.min.fling_velocity=160 \
     ro.max.fling_velocity=20000
+
+# OTA
+PRODUCT_PROPERTY_OVERRIDES += \
+    lineage.updater.uri=https://raw.githubusercontent.com/Fagyi/OTA/lineage-16.0/pme.json
