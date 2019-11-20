@@ -23,7 +23,7 @@ $(call inherit-product-if-exists, vendor/htc/pme/pme-vendor.mk)
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-pe
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -204,8 +204,8 @@ PRODUCT_PACKAGES += \
     libtinyxml
 
 # Doze
-PRODUCT_PACKAGES += \
-    HTCDoze
+#PRODUCT_PACKAGES += \
+#    HTCDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -226,8 +226,8 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service
 
 # FlipFlap
-PRODUCT_PACKAGES += \
-    FlipFlap
+#PRODUCT_PACKAGES += \
+#    FlipFlap
 
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
@@ -254,7 +254,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     prebuilts/vndk/v27/arm64/arch-arm64-armv8-a/shared/vndk-core/android.hardware.gnss@1.0.so:system/lib64/android.hardware.gnss@1.0-v27.so
 
-# Health
+# Healthd
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
     android.hardware.health@2.0-service
@@ -319,10 +319,6 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.pme
-
-# Lineage hardware
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
 
 # LiveDisplay native
 PRODUCT_PACKAGES += \
@@ -471,10 +467,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
-
-# Touch HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch@1.0-service.pme
 
 # USB HAL
 PRODUCT_PACKAGES += \

@@ -83,7 +83,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.use_data_netmgrd=true \
     ro.vendor.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.mode=concurrent
+    persist.vendor.data.mode=concurrent
 
 # Default pd_enable value
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -182,7 +182,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.fill_eons=1 \
     persist.vendor.ims.dropset_feature=0 \
     persist.data.profile_update=true \
-    persist.radio.NETWORK_SWITCH=1
+    persist.radio.NETWORK_SWITCH=1 \
+    persist.sys.fflag.override.settings_network_and_internet_v2=true
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -213,12 +214,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.timed.enable=true
+    persist.vendor.delta_time.enable=true
 
 # WFD
-#property to enable user to access Google WFD settings
-    persist.debug.wfd.enable=1 \
-    persist.sys.wfd.virtual=0
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.debug.wfd.enable=1
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -13,8 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_pme.mk
-
 COMMON_LUNCH_CHOICES := \
-    lineage_pme-userdebug
+    aosp_pme-userdebug
+
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/aosp_pme.mk
+

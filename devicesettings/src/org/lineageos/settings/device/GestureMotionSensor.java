@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.lineageos.internal.util.FileUtils;
-
 public class GestureMotionSensor {
 
     private static final boolean DEBUG = false;
