@@ -1,0 +1,6 @@
+allow hal_power_default device:file r_file_perms;
+allow hal_power_default device:file open;
+allow hal_power_default device:file getattr;
+allow hal_power_default debugfs:file r_file_perms;
+allow hal_power_default debugfs:file open;
+allow hal_power_default debugfs:file getattr;

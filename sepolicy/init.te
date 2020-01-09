@@ -4,3 +4,8 @@ allow init misc_block_device:blk_file rw_file_perms;
 # Power
 allow init proc_kernel_sched:file rw_file_perms;
 
+allow init init:capability2 block_suspend;
+allow init init:netlink_kobject_uevent_socket read;
+allow init init:netlink_generic_socket read;
+allow init init:netlink_generic_socket write;
+allow init device:chr_file ioctl;

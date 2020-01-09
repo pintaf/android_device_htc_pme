@@ -11,3 +11,5 @@ allow system_server mpctl_data_file:dir search;
 allow system_server mpctl_data_file:sock_file write;
 allow system_server mpctl_socket:dir search;
 allow system_server mpctl_socket:sock_file write;
+
+allow system_server init:binder call;
