@@ -30,7 +30,7 @@ $(call inherit-product, vendor/maruos/BoardConfigVendor.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pme
-PRODUCT_NAME := maru_pme
+PRODUCT_NAME := lineage_pme
 PRODUCT_BRAND := HTC
 PRODUCT_MODEL := Maru on the HTC 10
 PRODUCT_MANUFACTURER := HTC
