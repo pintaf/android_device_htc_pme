@@ -27,3 +27,6 @@ $(call inherit-product, vendor/maruos/BoardConfigVendor.mk)
 
 PRODUCT_NAME := maru_pme
 PRODUCT_MODEL := Maru on the HTC 10
+
+# Maru, ignoring SELINUX Neverallows
+SELINUX_IGNORE_NEVERALLOWS := true
